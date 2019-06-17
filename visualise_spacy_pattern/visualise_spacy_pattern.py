@@ -27,13 +27,16 @@ def get_node_texts(pattern):
     text2count = {text: node_texts.count(text) for text in unique_texts}
     # Iterate through, appending the duplicate indicator where appropriate
     new_node_texts = []
+    texts_added = []
     for text in node_texts:
         has_duplicates = text2count[text] > 1
+        new_node_text = text
         if has_duplicates:
-            n_already = new_node_texts.count(text)
+            n_already = texts_added.count(text)
             duplicate_number = n_already + 1
-            text += '\n({})'.format(duplicate_number)
-        new_node_texts.append(text)
+            new_node_text = text + '\n({})'.format(duplicate_number)
+        new_node_texts.append(new_node_text)
+        texts_added.append(text)
     return new_node_texts
 
 
