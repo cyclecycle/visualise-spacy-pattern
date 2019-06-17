@@ -1,4 +1,4 @@
-from visualise_spacy_dependency_pattern import util
+from visualise_spacy_pattern import util
 import pydot
 
 
