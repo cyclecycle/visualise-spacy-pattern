@@ -20,18 +20,31 @@ def get_node_text(pattern_element):
     return node_text
 
 
+def get_node_texts(pattern):
+    node_texts = [get_node_text(element) for element in pattern]
+    # Count the occurrences of each node text
+    unique_texts = set(node_texts)
+    text2count = {text: node_texts.count(text) for text in unique_texts}
+    # Iterate through, appending the duplicate indicator where appropriate
+    new_node_texts = []
+    for text in node_texts:
+        has_duplicates = text2count[text] > 1
+        if has_duplicates:
+            n_already = new_node_texts.count(text)
+            duplicate_number = n_already + 1
+            text += '\n({})'.format(duplicate_number)
+        new_node_texts.append(text)
+    return new_node_texts
+
+
 def to_pydot(pattern):
     graph = pydot.Dot(graph_type='graph')
 
     # Create and add nodes
     node_objects = {}
-    node_texts_already = []
-    for pattern_element in pattern:
+    node_texts = get_node_texts(pattern)
+    for node_text, pattern_element in zip(node_texts, pattern):
         node_name = util.get_node_name(pattern_element)
-        node_text = get_node_text(pattern_element)
-        if node_text in node_texts_already:
-            node_text += '\n(2)'  # Prevent duplicate node labels
-        node_texts_already.append(node_text)
         plot_attrs = {
             **DEFAULT_NODE_ATTRS,
             'name': node_text,
