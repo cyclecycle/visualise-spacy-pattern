@@ -25,13 +25,13 @@ def to_pydot(pattern):
 
     # Create and add nodes
     node_objects = {}
-    node_names_already = []
+    node_texts_already = []
     for pattern_element in pattern:
         node_name = util.get_node_name(pattern_element)
-        if node_name in node_names_already:
-            node_name += '\n(2)'  # Prevent duplicate names 
-        node_names_already.append(node_name)
         node_text = get_node_text(pattern_element)
+        if node_text in node_texts_already:
+            node_text += '\n(2)'  # Prevent duplicate node labels
+        node_texts_already.append(node_text)
         plot_attrs = {
             **DEFAULT_NODE_ATTRS,
             'name': node_text,
