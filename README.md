@@ -1,11 +1,17 @@
 # Visualise spacy pattern
 
+## Installation
+
+```bash
+pip install visualise-spacy-pattern
+```
+
 ## Usage
 
 ```python
 import visualise_spacy_pattern
 
-# Load the example pattern
+# Load the example dependency pattern
 pattern_file = 'examples/pattern_1.json'
 with open(pattern_file) as f:
     pattern = json.load(f)

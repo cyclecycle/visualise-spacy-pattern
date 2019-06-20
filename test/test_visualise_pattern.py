@@ -5,8 +5,9 @@ from visualise_spacy_pattern import to_pydot
 
 
 pattern_files = [
-    'examples/pattern_0.json',
-    'examples/pattern_1.json',
+    # 'examples/pattern_0.json',
+    # 'examples/pattern_1.json',
+    'examples/pattern_2.json',
 ]
 
 
