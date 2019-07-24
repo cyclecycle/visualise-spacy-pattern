@@ -1,0 +1,9 @@
+[
+  {"PATTERN": {"DEP": "ROOT", "TAG": "VBD"}, "SPEC": {"NODE_NAME": "node1"}},
+  {"PATTERN": {"DEP": "nsubj", "TAG": "PRP"},
+  "SPEC": {"NBOR_NAME": "node1", "NBOR_RELOP": ">", "NODE_NAME": "node0"}},
+  {"PATTERN": {"DEP": "prep", "TAG": "IN"},
+  "SPEC": {"NBOR_NAME": "node0", "NBOR_RELOP": "$--", "NODE_NAME": "node2"}},
+  {"PATTERN": {"DEP": "pobj", "TAG": "NN"},
+  "SPEC": {"NBOR_NAME": "node2", "NBOR_RELOP": ">", "NODE_NAME": "node4"}}
+]

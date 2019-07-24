@@ -8,7 +8,7 @@ with open("requirements.txt") as fh:
 
 setuptools.setup(
     name="visualise-spacy-pattern",
-    version="0.0.1",
+    version="0.0.2",
     author="Nicholas Morley",
     author_email="nick.morley111@gmail.com",
     description=" Visualise spacy dependency patterns",

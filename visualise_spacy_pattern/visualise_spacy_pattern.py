@@ -2,13 +2,21 @@ from visualise_spacy_pattern import util
 import pydot
 
 
+DEFAULT_STYLE_ATTRS = {
+    'fontname': 'palatino',
+    'fontsize': 10,
+}
+
 DEFAULT_NODE_ATTRS = {
     'color': 'cyan',
     'shape': 'box',
     'style': 'rounded',
-    'fontname': 'palatino',
-    'fontsize': 10,
-    'penwidth': 2
+    'penwidth': 2,
+    **DEFAULT_STYLE_ATTRS,
+}
+
+DEFAULT_EDGE_ATTRS = {
+    **DEFAULT_STYLE_ATTRS,
 }
 
 
@@ -68,12 +76,32 @@ def to_pydot(pattern, edge_labels=['DEP']):
         if not rel:
             continue
         if rel == '>':
-            edge = pydot.Edge(nbor, node)
+            edge = pydot.Edge(
+                nbor,
+                node,
+                label='child of',
+                arrowtail='normal',
+                dir='back',
+                **DEFAULT_EDGE_ATTRS,
+            )
         elif rel == '<':
-            edge = pydot.Edge(node, nbor)
-        else:
-            print('Warning: rel type {} unhandled. Results maybe be incorrect.'.format(rel))
-            edge = pydot.Edge(node, nbor)
+            edge = pydot.Edge(
+                node,
+                nbor,
+                label='child of',
+                arrowtail='normal',
+                dir='back',
+                **DEFAULT_EDGE_ATTRS
+            )
+        elif rel == '$--':
+            edge = pydot.Edge(
+                node,
+                nbor,
+                label='prev sibling of',
+                arrowtail='normal',
+                dir='back',
+                **DEFAULT_EDGE_ATTRS
+            )
         graph.add_edge(edge)
 
     return graph
